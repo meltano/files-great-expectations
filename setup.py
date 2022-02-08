@@ -7,7 +7,7 @@ setup(
     packages=find_packages(),
     package_data={
         "bundle": [
-            "utilities/README.md
+            "utilities/great_expectations/README.md"
         ]
     },
 )
