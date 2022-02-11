@@ -5,9 +5,11 @@ Meltano project [file bundle](https://meltano.com/docs/command-line-interface.ht
 Files:
 - [`utilities`](./bundle/utilities/) (directory)
 - [`utilities/great_expectations/`](./bundle/utilities/great_expectations/) (directory)
-- [`utilities/great_expectations/README.md`](./bundle/utilities/great_expectations.README.md)
+- [`utilities/great_expectations/README.md`](./bundle/utilities/great_expectations/README.md)
 
 ```py
-# Add only this file bundle to your Meltano project
+# add great-expectations to your Meltano project (including this file bundle)
+meltano add utility great-expectations
+# add only this file bundle to your Meltano project
 meltano add files great-expectations
 ```
