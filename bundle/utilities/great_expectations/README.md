@@ -8,10 +8,10 @@
 
 Install with Meltano:
 
-```bash
-meltano add utility great_expectations
+```shell
+meltano add utility great-expectations
 # now try it out!
-meltano invoke great_expectations --help
+meltano invoke great-expectations --help
 ```
 
 If you are using Great Expectations to validate data in a database or warehouse, you
@@ -19,41 +19,41 @@ might need to install the appropriate drivers. Common options are supported by G
 as pip extras, and any additional packages you may want can be added too by configuring
 a custom `pip_url` for the `great_expectations` utility:
 
-```bash
+```shell
 # set the _pip_url extra setting
-meltano config great_expectations set _pip_url "great_expectations[redshift]; awscli"
-# re-install the great_expectations plugin for changes to take effect
-meltano install utility great_expectations
+meltano config great-expectations set _pip_url "great_expectations[redshift]; awscli"
+# re-install the great-expectations plugin for changes to take effect
+meltano install utility great-expectations
 ```
 
 ## Getting Started
 
-Great Expectations can be used in many ways, the following is how we chose to use GE in our own [Squared Project](https://gitlab.com/meltano/squared/-/tree/master).
+Initialise your Great Expectations project:
 
-### Our Approach
-
-We primarily use `great_expectations` to test the boundaries of our dbt project; incoming raw data (defined as dbt sources) and our final dbt models that are consumed by downstream BI tools.
-Both sets of expectations need to pass for a successful pipeline run.
-
-To implement the above, we create 'expectation suites' for every table that we want to test, then 'checkpoints' for configuring a set of expectations that we want to run together.
-Usually we will have a DAG which runs EL, a checkpoint for the raw data, all dbt models and lastly a checkpoint for final dbt output consumption models.
-
-For example:
-
-```bash
-# Run the dbt_hub_metrics checkpoint to validate for failures
-meltano --environment=prod invoke great_expectations checkpoint run dbt_hub_metrics
-
-# Add a new expecation suite
-meltano --environment=prod invoke great_expectations suite new
-
-# Edit an existing suite
-meltano --environment=prod invoke great_expectations suite edit dbt_hub_metrics
-
-# Add a new checkpoint (one or more expectation suites to validate against)
-meltano --environment=prod invoke great_expectations checkpoint add my_new_checkpoint
+```shell
+# from your Meltano project root
+cd utilities
+meltano invoke great-expectations init
 ```
 
-### Other Details
+Congratulations, you just created your project! You can customise your configuration in many ways. Here are some examples:
 
-In our `great_expectations.yml` file and `checkpoints/*.yml` we templated out our secrets (i.e. AWS keys) and environment specific configurations (i.e. schema) so that we could pass those from our `.env` and `*meltano.yml` configurations.
+```shell
+# connect to your data
+meltano invoke great-expectations datasource new
+# bundle data with Expectation Suite(s) in a Checkpoint for later re-validation
+meltano invoke great-expectations checkpoint new <checkpoint_name>
+# create, edit, list, profile Expectation Suites
+meltano invoke great-expectations suite --help
+# build and manage Data Docs sites
+meltano invoke great-expectations docs --help
+```
+
+If you chose to initialise Great Expectations in a folder other than `$MELTANO_PROJECT_ROOT/utilities/great_expectations`, configure your chosen directory in Meltano:
+
+```shell
+# view available great-expectations settings
+meltano config great-expectations list
+# set the `ge_home` to your chosen path
+meltano config great-expectations set ge_home '$MELTANO_PROJECT_ROOT/<custom path>/great_expectations'
+```
