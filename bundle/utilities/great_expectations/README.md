@@ -9,9 +9,9 @@
 Install with Meltano:
 
 ```shell
-meltano add utility great-expectations
+meltano add utility great_expectations
 # now try it out!
-meltano invoke great-expectations --help
+meltano invoke great_expectations --help
 ```
 
 If you are using Great Expectations to validate data in a database or warehouse, you
@@ -21,9 +21,9 @@ a custom `pip_url` for the `great_expectations` utility:
 
 ```shell
 # set the _pip_url extra setting
-meltano config great-expectations set _pip_url "great_expectations[redshift]; awscli"
-# re-install the great-expectations plugin for changes to take effect
-meltano install utility great-expectations
+meltano config great_expectations set _pip_url "great_expectations[redshift]; awscli"
+# re-install the great_expectations plugin for changes to take effect
+meltano install utility great_expectations
 ```
 
 ## Getting Started
@@ -33,27 +33,27 @@ Initialise your Great Expectations project:
 ```shell
 # from your Meltano project root
 cd utilities
-meltano invoke great-expectations init
+meltano invoke great_expectations init
 ```
 
 Congratulations, you just created your project! You can customise your configuration in many ways. Here are some examples:
 
 ```shell
 # connect to your data
-meltano invoke great-expectations datasource new
+meltano invoke great_expectations datasource new
 # bundle data with Expectation Suite(s) in a Checkpoint for later re-validation
-meltano invoke great-expectations checkpoint new <checkpoint_name>
+meltano invoke great_expectations checkpoint new <checkpoint_name>
 # create, edit, list, profile Expectation Suites
-meltano invoke great-expectations suite --help
+meltano invoke great_expectations suite --help
 # build and manage Data Docs sites
-meltano invoke great-expectations docs --help
+meltano invoke great_expectations docs --help
 ```
 
 If you chose to initialise Great Expectations in a folder other than `$MELTANO_PROJECT_ROOT/utilities/great_expectations`, configure your chosen directory in Meltano:
 
 ```shell
-# view available great-expectations settings
-meltano config great-expectations list
+# view available great_expectations settings
+meltano config great_expectations list
 # set the `ge_home` to your chosen path
-meltano config great-expectations set ge_home '$MELTANO_PROJECT_ROOT/<custom path>/great_expectations'
+meltano config great_expectations set ge_home '$MELTANO_PROJECT_ROOT/<custom path>/great_expectations'
 ```

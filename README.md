@@ -8,8 +8,8 @@ Files:
 - [`utilities/great_expectations/README.md`](./bundle/utilities/great_expectations/README.md)
 
 ```py
-# add great-expectations to your Meltano project (including this file bundle)
-meltano add utility great-expectations
+# add great_expectations to your Meltano project (including this file bundle)
+meltano add utility great_expectations
 # add only this file bundle to your Meltano project
-meltano add files great-expectations
+meltano add files great_expectations
 ```
